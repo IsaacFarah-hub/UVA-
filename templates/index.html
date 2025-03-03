@@ -100,154 +100,38 @@
                         <figcaption>Generada con Microsoft Designer</figcaption>
                     </figure>
                 </div>
-                <p class="fuente">Fuente: <a href="https://www.who.int/es/news-room/fact-sheets/detail/ultraviolet-radiation" target="cblanck" rel="noopener noreferrer">WHO</a></p>
+                <p class="fuente">Fuente: <a href="https://www.who.int/es/news-room/fact-sheets/detail/ultraviolet-radiation" target="_blank" rel="noopener noreferrer">WHO</a></p>
             </div>
             <div class="separador"></div>
-            <div id="recomendaciones">
-                <div>
-                    <h3 class="titulo_info">Recomendaciones contra la exposición excesiva del sol</h3>
-                    <div class="columnas_info">
-                        <div id="colum1_recomendaciones">
-                            <ul>
-                                <li>Limitar el tiempo de exposición al sol entre las 10:00 a.m. y las 4:00 p.m. </li>
-                                <li>Ponerse a la sombra.</li>
-                                <li>Usar ropa y accesorios protectores (sombreros, gafas de sol, camisas de manga larga, etc.).</li>
-                                <li>Aplicar protector solar de amplio espectro (30 FPS o superior) en las zonas que van a estar expuestas al sol.</li>
-                            </ul>
-                        </div>
-                        <figure id="img_recomendaciones">
-                            <img src="prot_solar_storyset.jpg" alt="Mujer aplicando bloqueador solar" width="380" height="380">
-                            <figcaption>Tomada de Freepik</figcaption>
-                        </figure>
-                    </div>
-                </div>
-                
-                <p class="fuente">Fuente: <a href="https://www.who.int/es/news-room/fact-sheets/detail/ultraviolet-radiation" target="cblanck" rel="noopener noreferrer">WHO</a></p>
-                <div id="video">
-                    <p>Si quieres saber más acerca de la protección solar, mira este video:</p>
-                    <iframe width="560" height="250" src="https://www.youtube.com/embed/jpOPq1chQgU?si=uoTUPVQtCDbPlyoL&amp;start=17" 
-                    title="YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-
-            </div>
-
-
-        </section>
-
-        <section>
-            <div id="formulario">
-                <h3 id="t_formulario">Tu riesgo por radiación ultravioleta</h3>
-                <p id="descripcion_form">
-                Selecciona en cada campo del siguiente formulario las opciones que consideres que pueden influir 
-                en el riesgo de afecciones en la piel debido a la exposición a la radiación ultravioleta (UV) durante el día.
-                </p>
-                <form id="factores_riesgo">
-                    <ul>
-                    <div id="pregunta1">
-                        <div class="franja"></div>
-                    <li><label for="tipo_piel">Elige el tipo de piel similar al tuyo según el número indicado:</label></li>
-                    <img src="Tipos_de_piel.jpg" alt="Tipos de piel" width="450" height="150"> 
-                        <br>
-                        <select id="tipo_piel" name="tipo_piel">
-                            <option selected>Seleccione una opción</option>
-                            <option value= 3>I</option>
-                            <option value= 2>II</option>
-                            <option value= 1>III</option>
-                            <option value= 0>IV</option>
-                            <option value= 0>V</option>
-                        </select>
-                    </div>
-                    <div id="pregunta2">
-                    <li><label for="ante_propio">¿Usted ha tenido antecedentes de padecer algún tipo de cáncer de piel?</label> </li>
-                        <select name="ante_propio" id="ante_propio">
-                            <option selected>Seleccione una opción</option>
-                            <option value="0">No</option>
-                            <option value="8">Si</option>
-                        </select>
-                    </div>
-                    <div id= "pregunta3"class="ocultar_P3">
-                    <li><label for="ante_familiar">¿Algún familiar cercano ha sido diagnosticado con cáncer de piel?</label></li>
-                        <select name="ante_familiar" id="ante_familiar">
-                            <option selected>Seleccione una opción</option>
-                            <option value="0">No</option>
-                            <option value="2">Si</option>
-                        </select>
-                        
-                    </div>
-                    <script src="ocultar_pregunta3.js"></script>
-                    <div id="pregunta4">
-                        <li><label for="quemadura">¿Con qué frecuencia sufre quemaduras solares cuando se expone al sol durante períodos prolongados?</label></li>
-                        <select name="quemadura" id="quemadura">
-                            <option selected>Seleccione una opción</option>
-                            <option value="3">Frecuentemente</option>
-                            <option value="2">Ocacionalmente</option>
-                            <option value="1">Rara vez</option>
-                        </select>
-                    </div>
-                    <div id="pregunta5">
-                        <li><label for="edad">¿A qué rango de edad pertenece?</label></li>
-                        <select name="edad" id="edad">
-                            <option selected>Seleccione una opción</option>
-                            <option value="3">Menor a 18 años</option>
-                            <option value="2">Entre 18 y 50 años</option>
-                            <option value="3">Mayor a 50 años</option>
-                        </select>
-                    </div>
-                    <div id="pregunta6">
-                        <li><label for="bloqueador">En este momento, ¿tiene aplicado bloqueador solar en la piel?</label></li>
-                        <select name="bloqueador" id="bloqueador">
-                            <option selected>Seleccione una opción</option>
-                            <option value="0">Si</option>
-                            <option value="3">No</option>
-                        </select>
-                    </div>
-                    <button type="submit">Enviar</button>            
-                    </ul>
-                </form>
-                <div id="resultado">
-                    <p class="exclamacion">¡</p>
-                    <p id="t_resultado"><span id="rango_riesgo">-</span></p>
-                    <p class="exclamacion">!</p>
-                    <script src="Formulario_riesgo.js"></script>
-                </div>
-            </div>
         </section>
         <footer>
             <div id="pie">
                 <div id="autores">
                     <p> Desarrollado por:</p>
                     <ul>
-                        
                         <li>Daniel Urrea</li>
                         <li>Isaac Farah</li>
                         <li>Juliana Rodriguez</li>
-                        
                         <li>Miguel Ordoñez</li>
                         <li>Daniela Marín</li>
                         <li>David Mahecha</li>
-                        
                     </ul>
-                </div>
-                <div id="contacto">
-                    <p>Contacto</p>
-                    <p class="numero">322 xxxxxxx </p>
-                    <p class="numero">322 xxxxxxx</p>
                 </div>
             </div>
         </footer>
         <script>
             function updateData() {
-                fetch("http://127.0.0.1:5000/")
-                    .then(response => response.text())
+                fetch("/obtener_uv")
+                    .then(response => response.json())
                     .then(data => {
-                        document.getElementById("sensor").innerText = data;
+                        document.getElementById("sensor").innerText = data.indice_uv;
                     })
                     .catch(error => {
                         console.error("Error al obtener datos:", error);
                     });
             }
-            setInterval(updateData, 5000);  // Actualizar cada 5 segundos
+            setInterval(updateData, 5000);
         </script>
     </body>
 </html>
+
