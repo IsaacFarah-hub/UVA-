@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 indice_uv = "..."  # Valor inicial
 
-@app.route('/')
+@app.route('/', methods=['GET', 'HEAD'])
 def index():
     return render_template('index.html', indice_uv=indice_uv)
 
