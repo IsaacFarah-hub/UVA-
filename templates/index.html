@@ -7,32 +7,27 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sensor UVA</title>
-        <link rel="icon" type="image/png" href="icono_U.png">
-        <link rel="stylesheet" href="style.css"> 
-        
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='icono_U.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
     </head>
     <body>
         <header>
             <div class="encabezado">
                 <h1>UVA !</h1>
                 <nav id="enlace_formulario"><a href="#t_formulario">Tu riesgo por UV</a></nav>
-                
             </div>
         </header>
         
         <br>
         <section>
             <div class="indicador">
-                <h2>
-                    Indice UV
-                </h2>
+                <h2>Indice UV</h2>
                 <div class="indice_uv">
-                    
                     <div class="circulo"></div>
                     <p> <span id="sensor">...</span></p>
                 </div>
                 <p><span id="rango"> </span></p>
-                <script src="Cambia_color.js"></script>
+                <script src="{{ url_for('static', filename='Cambia_color.js') }}"></script>
             </div>  
         </section>
         <section>
@@ -41,7 +36,7 @@
                 <h3 class="titulo_info"> Conoce a UVA </h3>
                 <div class="columnas_info">
                     <figure id="img_uva">
-                        <img src="UVA!.jpg" alt="Sensor de radicion ultravioleta" width="370" height="260">
+                        <img src="{{ url_for('static', filename='UVA!.jpg') }}" alt="Sensor de radiacion ultravioleta" width="370" height="260">
                     </figure>
                     <div id="colum2_uva">
                         <p>El perezoso, denomidado <strong>U</strong>ltra<strong>v</strong>iolet <strong>A</strong>larm es el encargado 
@@ -74,9 +69,8 @@
                             <li>Catarata</li>
                         </ul>
                     </div>
-
                     <figure id="img_cancer">
-                        <img src="cancer_piel_freepik.jpg" alt="Sintomas de cáncer" width="370" height="350" >
+                        <img src="{{ url_for('static', filename='cancer_piel_freepik.jpg') }}" alt="Sintomas de cáncer" width="370" height="350">
                         <figcaption>Tomada de Freepik</figcaption>
                     </figure>
                 </div>
@@ -93,10 +87,9 @@
                             Asimismo, quienes tienen antecedentes familiares de cáncer de piel o trabajan en exteriores durante el día 
                             también poseen un riesgo elevado de desarrollar esta enfermedad.
                         </p>
-                        
                     </div> 
                     <figure id="img_riesgo">
-                        <img src="evitar_sol.jpeg" alt="Niño cubriendose del sol" width="380" height="380" >
+                        <img src="{{ url_for('static', filename='evitar_sol.jpeg') }}" alt="Niño cubriendose del sol" width="380" height="380">
                         <figcaption>Generada con Microsoft Designer</figcaption>
                     </figure>
                 </div>
