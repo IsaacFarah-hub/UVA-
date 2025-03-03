@@ -2,38 +2,43 @@
     box-sizing: border-box;
     
 }
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family:'Quicksand', 'Roboto', sans-serif;
     background-color: #f8eefb;
 }
 
+
 header h1{ 
-    font-size: 3em ;
+    font-size: 50px ;
     font-weight: bold;
     margin-bottom: 4px;
-    padding: 25px,30px;
 }
-header a{
-    padding: 5px 7px;
-    
-    font-size: 1.2em;
+header nav{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 25px;
 }
 header a:hover{
     font-weight: bold;
 }
 .indicador h2{ 
-    font-size: 1.5em;
+    font-size: 30px;
     color: black ;
     display: flex;
     text-align: center;
     justify-content: center;
+
 }
-p{ font-size: 1em;}
+p{ font-size: 24px; color: #120021;}
 
 #rango{
     color: black;
-    font-size: 2em;
+    font-size: 35px;
     color: black ;
     display: flex;
     text-align: center;
@@ -42,24 +47,19 @@ p{ font-size: 1em;}
 }
 
 
-header{
-    background-color: blueviolet;
-    color: white;
-    height: 20vh;
-    
-
-}
 .encabezado{
-    max-width: 1300px;
-    margin: auto;
-}
-
-header .encabezado{
+    max-width: 100%;
+    margin: auto;    
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-#en_formulario{
+
+header .encabezado{
+    background-color: blueviolet;
+    color: white;
+}
+#enlace_formulario a{
     color: white;
     text-decoration: none;
 }
@@ -67,12 +67,13 @@ header .encabezado{
     display: none;
 }
 
+/* Indicador */
 .indice_uv{
     position: relative;
-    width: 200px;
-    height: 200px;
-    gap: 20px;
+    width: 240px;
+    height: 240px;
     margin: auto;
+    margin-top: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,20 +116,137 @@ header .encabezado{
     }
 }
 
+
+
+/* Informacion */
+
+.separador{
+    height: 20px;
+    background-color: #8237c3;
+    margin: 50px auto;
+    width: 95%;
+    border-radius: 5px;
+}
+.titulo_info{
+    font-size: 40px;
+}
+.subtitu_info{
+    font-size: 28px;
+
+}
+#sobre_uva {
+    font-size: 24px;
+    margin: auto;
+    padding: 0 50px; 
+    max-width: 1400px; 
+}
+#sobre_uva p{
+    text-align: justify;
+}
+#peligros{
+    font-size: 24px;
+    max-width: 1400px;
+    margin: auto;
+    padding: 0 50px;
+}
+#peligros ul, #recomendaciones ul, #formulario ul{
+    list-style-type: none;
+    padding-left: 5px;
+}
+
+#peligros ul li, #recomendaciones ul li, #formulario ul li  {
+    position: relative; 
+    padding-left: 25px;
+}
+
+#peligros ul li::before, #recomendaciones ul li::before, #formulario ul li:before {
+    content: "☀";
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    font-size: 1.2em;
+
+}
+#peligros p, #peligros ul{
+    text-align: justify;
+}
+
+#img_cancer, #img_riesgo, #img_recomendaciones, #img_uva{
+    margin: auto;
+    margin-top: 50px;
+    width: 370px;   
+}
+#img_cancer img, #img_riesgo img, #img_recomendaciones img, #img_uva img {
+    box-shadow:  0px 0px 13px 1px #1d013660;;
+}
+#img_cancer figcaption, #img_riesgo figcaption, #img_recomendaciones figcaption, #img_uva figcaption{
+    color: #aaaaaa;
+    font-size: 18px;
+}
+#recomendaciones li, #peligros li{
+    margin-bottom: 8px;
+}
+
+
+
+#recomendaciones{
+    font-size: 24px;
+    max-width: 1400px;
+    margin: auto;
+    padding: 0 50px;
+}
+
+#recomendaciones ul{
+    text-align: justify;
+}
+.fuente{
+    margin: 45px 0;
+}
+
+.fuente a {
+    text-decoration: none;
+    color: #550899;  
+}
+.fuente a:hover{
+    font-weight: bold;
+}
+#video{
+    background-color: #740596da;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    margin: auto;
+    padding: 10px 20px;
+}
+#video p{
+    color: white;
+}
+#video iframe{
+    margin: 1.7svw;
+    margin-bottom: 15px;
+    width: 94%;
+
+}
+
+
+/* Formulario */
+
 #t_formulario{
     display: flex;
     align-items: center;
     justify-content: start;
     background-color: #550899;
-    font-size: 2.5em;
+    font-size: 40px;
     color: white;
-    height: 8vh;
+    height: 110px;
+    padding: 0 30px;
 }
 #descripcion_form{
     padding-left: 40px;
     padding-right: 40px;
-    font-size: 1.4em;
+    font-size: 25px;
     font-weight: bold;
+    text-align: justify;
 }
 #factores_riesgo{
     background-color: #ffffff;
@@ -139,7 +257,7 @@ header .encabezado{
     padding-top: 10px;
     border: #630578be, 8px, solid;
     border-radius: 20px;
-    font-size: 1.3em ;
+    font-size: 22px ;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -158,8 +276,13 @@ header .encabezado{
     margin-left: 60px;
     margin-right: 60px;
     padding-bottom: 20px;
-    text-align: start; 
-    padding-top: 30px;}
+    text-align: justify; 
+    padding-top: 30px;
+}
+#formulario ul li::before {
+    top: 25px;
+}
+
 
 select{
     max-width: 1700px;
@@ -167,7 +290,7 @@ select{
     width: 20vw;
     margin-bottom: 25px;
     font-weight: 300;
-    font-size: 0.8em;
+    font-size: 18px;
     padding: 9px;
     border: 1.5px solid #4720a8;
     border-radius: 10px;
@@ -224,7 +347,7 @@ button:hover{
     justify-content: center;
     align-items: center; 
     text-align: center; 
-    font-size: 1.1em;
+    font-size: 26px;
     margin-top: 50px;
     box-shadow: 0 0 30px 3px #1d013660;
     border-radius: 30px;
@@ -234,7 +357,6 @@ button:hover{
     display: flex;
     font-weight: bold;
     color: transparent; 
-    font-size: 4em;
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 10px;
@@ -243,7 +365,7 @@ button:hover{
 #rango_riesgo{
     margin: 0 ;
     padding: 0;
-    font-size: 1.5em;
+    font-size: 28px;
     font-weight: bold;
     width: 150px;
     color: #31005a #fff836f6;
@@ -251,37 +373,132 @@ button:hover{
 #t_resultado{
     width: 150px;
 }
-.autores{
-    height: 150px;
-    width: 300px;
-    margin-left: 150px;
 
-}
+
+
+/* Pie de pagina */
+
 #pie{
     display: flex;
-    gap: 10px;
+    align-items: flex-start; 
+    justify-content:space-between ; 
+    gap: 5px;
     background-color: #31005a;
-    color: #fff;
-    font-size: 0.9em;
-    height: 150px;
-    margin-top: 50px;
+    font-size: 10px;
+    height: 100px;
+    margin-top: 35px;
+    color: white;
 
 }
-.autores ul{
+#autores{
+    height: 100px;
+    width: 240px !important;
+    margin-left: 40px;
+
+}
+#autores ul{
     list-style-type: none;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding-left: 0;
-    padding-right: 150px;
     margin-top: 10px;
+    color: #fff;
+
 }
-.autores li{
-    padding-right: 20px;
-    width: 150px;
+#autores li{
+    width: 100px !important;
 }
-.autores p{
+#autores p{
+    font-size: 15px;
     font-weight: bold;
     margin: 0;
-    padding-top: 40px;
-    padding-left: 0;
+    padding-top: 15px;
+    padding-left: 0;    
+    color: #fff;
+}
+#contacto{
+    width: 30%;
+    max-width: 200px;
+}
+#contacto p{
+
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    padding: 15px 0;   
+    color: #fff;
+}
+.numero {
+    padding: 0 !important;
+    font-size: 13px !important;
+    font-weight: normal !important;
+
+}
+
+
+/* Version escritorio */
+
+/* Encabezado */
+@media (min-width: 750px){
+header .encabezado{
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px;
+    
+}
+.encabezado h1{
+    margin: 0 60px;
+    align-items: center;
+}
+header nav{
+    flex-direction: row;
+    margin: 0 60px;
+    align-items: center;
+}
+
+#sobre_uva, #peligros, #recomendaciones {
+    max-width: 1200px;
+}
+
+.columnas_info{
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+.titulo_info{
+    max-width: 800px;
+}
+#img_cancer, #img_riesgo, #img_recomendaciones{
+    align-self: center;
+    justify-content: center;
+    margin: 0;
+    margin-left: 35px;
+}
+#img_uva{
+    align-self: center;
+    justify-content: center;
+    margin: 0;
+    margin-right: 35px;
+}
+
+#colum2_uva, #colum1_peligros, #colum1_riesgo, #colum1_recomendaciones{
+    max-width: 600px;
+    align-self: center;
+    justify-content: center;
+}
+#video iframe{
+    margin: 10px 20px;
+}
+
+/* Formulario */
+
+#descripcion_form{
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+#t_formulario{
+    height: 70px;
+    padding: 0 40px;
+}
 }

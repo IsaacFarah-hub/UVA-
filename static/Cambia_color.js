@@ -1,11 +1,10 @@
-// Obtener elementos del DOM
+
 const numberElement = document.getElementById("sensor");
 const circleElement = document.querySelector(".circulo");
 const uvBar = document.getElementById("rango");
 
-// Función para actualizar el número y los estilos del círculo y la barra de UV
 function updateNumberAndUvBar(newNumber) {
-    // Actualizar el círculo
+
     if (newNumber <= 2) {
         circleElement.style.backgroundColor = "#29e01f"; // Verde
         uvBar.innerText = "Bajo";
