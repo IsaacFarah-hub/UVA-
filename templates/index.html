@@ -1,120 +1,253 @@
-import { useEffect, useState } from "react";
-
-export default function UVAApp() {
-  const [sensorData, setSensorData] = useState("0");
-  const [riskScore, setRiskScore] = useState(0);
-  const [showFamilyHistory, setShowFamilyHistory] = useState(false);
-
-  useEffect(() => {
-    const fetchSensorData = async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:5000/");
-        const data = await response.text();
-        setSensorData(data);
-      } catch (error) {
-        console.error("Error al obtener datos:", error);
-      }
-    };
-    fetchSensorData();
-    const interval = setInterval(fetchSensorData, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const calculateRisk = (e) => {
-    e.preventDefault();
-    let total = 0;
-    const formData = new FormData(e.target);
-    total += parseInt(formData.get("skin"));
-    total += parseInt(formData.get("personalHistory"));
-    if (showFamilyHistory) {
-      total += parseInt(formData.get("familyHistory"));
-    }
-    total += parseInt(formData.get("burns"));
-    total += parseInt(formData.get("age"));
-    total += parseInt(formData.get("sunscreen"));
-    setRiskScore(total);
-  };
-
-  const getRiskLevel = () => {
-    if (riskScore <= 6) return "Bajo";
-    if (riskScore <= 12) return "Moderado";
-    if (riskScore <= 18) return "Alto";
-    return "Muy Alto";
-  };
-
-  const handlePersonalHistory = (e) => {
-    setShowFamilyHistory(e.target.value === "8");
-  };
-
-  const getUVColor = () => {
-    const uv = parseInt(sensorData);
-    if (uv <= 2) return "bg-green-500";
-    if (uv <= 5) return "bg-yellow-500";
-    if (uv <= 7) return "bg-orange-500";
-    if (uv <= 10) return "bg-red-500";
-    return "bg-purple-700";
-  };
-
-  return (
-    <div className="font-[Quicksand] p-4">
-      <header className="text-center text-3xl font-bold">UVA!</header>
-      <section className="text-center my-4">
-        <div className={`w-24 h-24 rounded-full mx-auto ${getUVColor()} flex items-center justify-center text-white text-2xl`}> {sensorData} </div>
-        <p>Índice UV Actual</p>
-      </section>
-      <section>
-        <h2 className="text-xl font-semibold">Información sobre UVA</h2>
-        <p>Los rayos UV pueden causar daños graves en la piel...</p>
-      </section>
-      <section>
-        <h2 className="text-xl font-semibold">Tu riesgo por UV</h2>
-        <form onSubmit={calculateRisk}>
-          <label>Tipo de piel</label>
-          <select name="skin">
-            <option value="0">I</option>
-            <option value="1">II</option>
-            <option value="2">III</option>
-            <option value="3">IV</option>
-          </select>
-          <label>Antecedente propio de cáncer</label>
-          <select name="personalHistory" onChange={handlePersonalHistory}>
-            <option value="0">No</option>
-            <option value="8">Sí</option>
-          </select>
-          {showFamilyHistory && (
-            <div>
-              <label>Antecedente familiar</label>
-              <select name="familyHistory">
-                <option value="0">No</option>
-                <option value="2">Sí</option>
-              </select>
+<!DOCTYPE html>
+<html lang="es">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+    </style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sensor UVA</title>
+        <link rel="icon" type="image/png" href="icono_U.png">
+        <link rel="stylesheet" href="style.css"> 
+        
+    </head>
+    <body>
+        <header>
+            <div class="encabezado">
+                <h1>UVA !</h1>
+                <nav id="enlace_formulario"><a href="#t_formulario">Tu riesgo por UV</a></nav>
+                
             </div>
-          )}
-          <label>Quemaduras frecuentes</label>
-          <select name="burns">
-            <option value="1">Ocasionalmente</option>
-            <option value="3">Frecuentemente</option>
-          </select>
-          <label>Edad</label>
-          <select name="age">
-            <option value="0">18-49</option>
-            <option value="3">Menor o mayor de 50</option>
-          </select>
-          <label>Bloqueador solar aplicado</label>
-          <select name="sunscreen">
-            <option value="0">Sí</option>
-            <option value="3">No</option>
-          </select>
-          <button type="submit" className="bg-blue-500 text-white p-2 rounded">Calcular Riesgo</button>
-        </form>
-        {riskScore > 0 && <p>Tu riesgo es: {getRiskLevel()}</p>}
-      </section>
-      <section>
-        <iframe width="560" height="250" src="https://www.youtube.com/embed/jpOPq1chQgU?start=17" title="Video UV"></iframe>
-      </section>
-      <footer className="text-center mt-4">
-        <p>Autores: Daniel Urrea, Isaac Farah, Juliana Rodríguez, Miguel Ordoñez, Daniela Marín, David Mahecha</p>
-      </footer>
-    </div>
-  );
-}
+        </header>
+        
+        <br>
+        <section>
+            <div class="indicador">
+                <h2>
+                    Indice UV
+                </h2>
+                <div class="indice_uv">
+                    
+                    <div class="circulo"></div>
+                    <p> <span id="sensor">...</span></p>
+                </div>
+                <p><span id="rango"> </span></p>
+                <script src="Cambia_color.js"></script>
+            </div>  
+        </section>
+        <section>
+            <div class="separador"></div>
+            <div id="sobre_uva">
+                <h3 class="titulo_info"> Conoce a UVA </h3>
+                <div class="columnas_info">
+                    <figure id="img_uva">
+                        <img src="UVA!.jpg" alt="Sensor de radicion ultravioleta" width="370" height="260">
+                    </figure>
+                    <div id="colum2_uva">
+                        <p>El perezoso, denomidado <strong>U</strong>ltra<strong>v</strong>iolet <strong>A</strong>larm es el encargado 
+                            de recibir la radiación ultravioleta y medirla bajo un índice, como el que se indica arriba. 
+                            Viene equipado con luces de diferentes colores según el nivel de rayos UV y un altavoz que se activará 
+                            cuando el índice sea superior a 11. Nuestro amigo está trepado en un poste ubicado en un campo abierto 
+                            de la Universidad Nacional de Colombia, por si quieres visitarlo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="separador"></div>
+            <div id="peligros">
+                <h3 class="titulo_info">Peligros de la sobrexposición de radiación ultravioleta</h3>
+                <p>Los rayos UV pueden ser imperceptibles; no podemos ver ni sentir este tipo de radiación procedente del sol, 
+                    por lo que no le damos mucha importancia al salir en un día soleado. Sin embargo, puede tener consecuencias 
+                    negativas en la salud con una exposición excesiva y un índice UV alto.
+                </p>
+                <div class="columnas_info">
+                    <div id="colum1_peligros">
+                        <h4 class="subtitu_info">Efectos en la salud: </h4>
+                        <ul>
+                            <li>Quemaduras solares</li>
+                            <li>Envejecimiento prematuro</li>
+                            <li>Reacciones fototóxicas y fotoalérgicas en la piel</li>
+                            <li>Inmunodepresión (Factor de riesgo de cáncer)</li>
+                            <li>Desarrollo de cáncer de piel y ojos (tipo melanoma o carcinoma)</li>
+                            <li>Inflamación de la córnea y la conjuntiva del ojo</li>
+                            <li>Catarata</li>
+                        </ul>
+                    </div>
+
+                    <figure id="img_cancer">
+                        <img src="cancer_piel_freepik.jpg" alt="Sintomas de cáncer" width="370" height="350" >
+                        <figcaption>Tomada de Freepik</figcaption>
+                    </figure>
+                </div>
+                <h4 class="subtitu_info">Factores de riesgo</h4>
+                <div class="columnas_info"> 
+                    <div id="colum1_riesgo">              
+                        <p>
+                            Existen características que pueden incrementar la manifestación del cáncer en las personas, 
+                            como la vulnerabilidad de la piel y los ojos de niños y adolescentes a la radiación, 
+                            ya que la sobreexposición a temprana edad conlleva un mayor riesgo en la adultez. 
+                        </p>
+                        <p>
+                            Además, las personas con piel clara sufren más quemaduras solares, lo que eleva su riesgo de presentar cáncer. 
+                            Asimismo, quienes tienen antecedentes familiares de cáncer de piel o trabajan en exteriores durante el día 
+                            también poseen un riesgo elevado de desarrollar esta enfermedad.
+                        </p>
+                        
+                    </div> 
+                    <figure id="img_riesgo">
+                        <img src="evitar_sol.jpeg" alt="Niño cubriendose del sol" width="380" height="380" >
+                        <figcaption>Generada con Microsoft Designer</figcaption>
+                    </figure>
+                </div>
+                <p class="fuente">Fuente: <a href="https://www.who.int/es/news-room/fact-sheets/detail/ultraviolet-radiation" target="cblanck" rel="noopener noreferrer">WHO</a></p>
+            </div>
+            <div class="separador"></div>
+            <div id="recomendaciones">
+                <div>
+                    <h3 class="titulo_info">Recomendaciones contra la exposición excesiva del sol</h3>
+                    <div class="columnas_info">
+                        <div id="colum1_recomendaciones">
+                            <ul>
+                                <li>Limitar el tiempo de exposición al sol entre las 10:00 a.m. y las 4:00 p.m. </li>
+                                <li>Ponerse a la sombra.</li>
+                                <li>Usar ropa y accesorios protectores (sombreros, gafas de sol, camisas de manga larga, etc.).</li>
+                                <li>Aplicar protector solar de amplio espectro (30 FPS o superior) en las zonas que van a estar expuestas al sol.</li>
+                            </ul>
+                        </div>
+                        <figure id="img_recomendaciones">
+                            <img src="prot_solar_storyset.jpg" alt="Mujer aplicando bloqueador solar" width="380" height="380">
+                            <figcaption>Tomada de Freepik</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                
+                <p class="fuente">Fuente: <a href="https://www.who.int/es/news-room/fact-sheets/detail/ultraviolet-radiation" target="cblanck" rel="noopener noreferrer">WHO</a></p>
+                <div id="video">
+                    <p>Si quieres saber más acerca de la protección solar, mira este video:</p>
+                    <iframe width="560" height="250" src="https://www.youtube.com/embed/jpOPq1chQgU?si=uoTUPVQtCDbPlyoL&amp;start=17" 
+                    title="YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+            </div>
+
+
+        </section>
+
+        <section>
+            <div id="formulario">
+                <h3 id="t_formulario">Tu riesgo por radiación ultravioleta</h3>
+                <p id="descripcion_form">
+                Selecciona en cada campo del siguiente formulario las opciones que consideres que pueden influir 
+                en el riesgo de afecciones en la piel debido a la exposición a la radiación ultravioleta (UV) durante el día.
+                </p>
+                <form id="factores_riesgo">
+                    <ul>
+                    <div id="pregunta1">
+                        <div class="franja"></div>
+                    <li><label for="tipo_piel">Elige el tipo de piel similar al tuyo según el número indicado:</label></li>
+                    <img src="Tipos_de_piel.jpg" alt="Tipos de piel" width="450" height="150"> 
+                        <br>
+                        <select id="tipo_piel" name="tipo_piel">
+                            <option selected>Seleccione una opción</option>
+                            <option value= 3>I</option>
+                            <option value= 2>II</option>
+                            <option value= 1>III</option>
+                            <option value= 0>IV</option>
+                            <option value= 0>V</option>
+                        </select>
+                    </div>
+                    <div id="pregunta2">
+                    <li><label for="ante_propio">¿Usted ha tenido antecedentes de padecer algún tipo de cáncer de piel?</label> </li>
+                        <select name="ante_propio" id="ante_propio">
+                            <option selected>Seleccione una opción</option>
+                            <option value="0">No</option>
+                            <option value="8">Si</option>
+                        </select>
+                    </div>
+                    <div id= "pregunta3"class="ocultar_P3">
+                    <li><label for="ante_familiar">¿Algún familiar cercano ha sido diagnosticado con cáncer de piel?</label></li>
+                        <select name="ante_familiar" id="ante_familiar">
+                            <option selected>Seleccione una opción</option>
+                            <option value="0">No</option>
+                            <option value="2">Si</option>
+                        </select>
+                        
+                    </div>
+                    <script src="ocultar_pregunta3.js"></script>
+                    <div id="pregunta4">
+                        <li><label for="quemadura">¿Con qué frecuencia sufre quemaduras solares cuando se expone al sol durante períodos prolongados?</label></li>
+                        <select name="quemadura" id="quemadura">
+                            <option selected>Seleccione una opción</option>
+                            <option value="3">Frecuentemente</option>
+                            <option value="2">Ocacionalmente</option>
+                            <option value="1">Rara vez</option>
+                        </select>
+                    </div>
+                    <div id="pregunta5">
+                        <li><label for="edad">¿A qué rango de edad pertenece?</label></li>
+                        <select name="edad" id="edad">
+                            <option selected>Seleccione una opción</option>
+                            <option value="3">Menor a 18 años</option>
+                            <option value="2">Entre 18 y 50 años</option>
+                            <option value="3">Mayor a 50 años</option>
+                        </select>
+                    </div>
+                    <div id="pregunta6">
+                        <li><label for="bloqueador">En este momento, ¿tiene aplicado bloqueador solar en la piel?</label></li>
+                        <select name="bloqueador" id="bloqueador">
+                            <option selected>Seleccione una opción</option>
+                            <option value="0">Si</option>
+                            <option value="3">No</option>
+                        </select>
+                    </div>
+                    <button type="submit">Enviar</button>            
+                    </ul>
+                </form>
+                <div id="resultado">
+                    <p class="exclamacion">¡</p>
+                    <p id="t_resultado"><span id="rango_riesgo">-</span></p>
+                    <p class="exclamacion">!</p>
+                    <script src="Formulario_riesgo.js"></script>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div id="pie">
+                <div id="autores">
+                    <p> Desarrollado por:</p>
+                    <ul>
+                        
+                        <li>Daniel Urrea</li>
+                        <li>Isaac Farah</li>
+                        <li>Juliana Rodriguez</li>
+                        
+                        <li>Miguel Ordoñez</li>
+                        <li>Daniela Marín</li>
+                        <li>David Mahecha</li>
+                        
+                    </ul>
+                </div>
+                <div id="contacto">
+                    <p>Contacto</p>
+                    <p class="numero">322 xxxxxxx </p>
+                    <p class="numero">322 xxxxxxx</p>
+                </div>
+            </div>
+        </footer>
+        <script>
+            function updateData() {
+                fetch("http://127.0.0.1:5000/")
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById("sensor").innerText = data;
+                    })
+                    .catch(error => {
+                        console.error("Error al obtener datos:", error);
+                    });
+            }
+            setInterval(updateData, 5000);  // Actualizar cada 5 segundos
+        </script>
+    </body>
+</html>
