@@ -5,3 +5,7 @@ services:
     region: oregon
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn app:app"
+    envVars:
+      - key: FLASK_ENV
+        value: production
+    port: 5000  # Especifica el puerto aquí
